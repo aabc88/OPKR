@@ -335,10 +335,12 @@ static const addr_checks* hyundai_init(uint16_t param) {
 static const addr_checks* hyundai_legacy_init(uint16_t param) {
   hyundai_common_init(param);
   hyundai_legacy = true;
-  hyundai_longitudinal = false;
-  hyundai_camera_scc = false;
 
-  hyundai_rx_checks = SET_ADDR_CHECKS(hyundai_legacy_addr_checks);
+  if (hyundai_longitudinal) {
+    hyundai_rx_checks = SET_ADDR_CHECKS(hyundai_long_addr_checks);
+  } else {
+    hyundai_rx_checks = SET_ADDR_CHECKS(hyundai_legacy_addr_checks);
+  }
   return &hyundai_rx_checks;
 }
 
