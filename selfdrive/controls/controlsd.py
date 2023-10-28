@@ -435,8 +435,8 @@ class Controls:
         #print('safety_mismatch={} safetyRxChecksInvalid={} mismatch_counter={}'.format(safety_mismatch, pandaState.safetyRxChecksInvalid, self.mismatch_counter))
         self.events.add(EventName.controlsMismatch)
 
-      if log.PandaState.FaultType.relayMalfunction in pandaState.faults:
-        self.events.add(EventName.relayMalfunction)
+      #if log.PandaState.FaultType.relayMalfunction in pandaState.faults:
+      #  self.events.add(EventName.relayMalfunction)
 
     self.second += DT_CTRL
     if self.second > 1.0:
