@@ -134,6 +134,22 @@ class CarInterface(CarInterfaceBase):
       ret.lateralTuning.pid.kf = 0.000045
       tire_stiffness_factor = 1.0
 
+    elif candidate == CAR.TRAX:
+      ret.minEnableSpeed = 18 * CV.MPH_TO_MS
+      ret.mass = 1365. + STD_CARGO_KG
+      ret.wheelbase = 2.7
+      ret.steerRatio = 16.8
+      ret.centerToFront = ret.wheelbase * 0.4
+      ret.steerActuatorDelay = 0.2
+      ret.longitudinalTuning.deadzoneBP = [0., 8.05]
+      ret.longitudinalTuning.deadzoneV = [.0, .14]
+      ret.longitudinalTuning.kpBP = [0., 10., 20., 30., 40., 50., 60., 70]  # kpV의 구간
+      ret.longitudinalTuning.kiBP = [0., 10., 20., 30., 40., 50., 60., 70]  # kiV의 구간
+      ret.longitudinalTuning.kpV = [0.25, 0.5, 0.75, 0.75, 1.0, 1.0, 1.25, 1.25]
+      ret.longitudinalTuning.kiV = [.03, .06, .09, .12, .15, .18, 0.21, 0.24]
+      ret.stoppingDecelRate = 0.5  # reach brake quickly after enabling
+
+
     # TODO: get actual value, for now starting with reasonable value for
     # civic and scaling by mass and wheelbase
     ret.rotationalInertia = scale_rot_inertia(ret.mass, ret.wheelbase)

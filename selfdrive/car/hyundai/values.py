@@ -22,6 +22,8 @@ class CarControllerParams:
     self.STEER_DRIVER_FACTOR = 1
 
 class CAR:
+
+
   # HYUNDAI
   AVANTE_AD = "HYUNDAI AVANTE (AD)"
   AVANTE_CN7 = "HYUNDAI AVANTE (CN7)"
@@ -72,6 +74,9 @@ class CAR:
   GENESIS_G80_DH = "GENESIS G80 (DH)"
   GENESIS_G90_HI = "GENESIS G90 (HI)"
   GENESIS_EQ900_HI = "GENESIS EQ900 (HI)"
+
+  # GM
+
 
 @dataclass
 class HyundaiCarInfo(CarInfo):
