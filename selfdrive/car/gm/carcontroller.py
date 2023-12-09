@@ -17,6 +17,7 @@ class CarController():
     self.apply_gas = 0
     self.apply_brake = 0
 
+
     self.lka_steering_cmd_counter_last = -1
     self.lka_icon_status_last = (False, False)
     self.steer_rate_limited = False

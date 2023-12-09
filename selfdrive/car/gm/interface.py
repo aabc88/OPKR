@@ -58,10 +58,10 @@ class CarInterface(CarInterfaceBase):
 
     # Start with a baseline lateral tuning for all GM vehicles. Override tuning as needed in each model section below.
     ret.minSteerSpeed = 7 * CV.MPH_TO_MS
-    ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-    ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.2], [0.00]]
+    ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0., 10., 20., 30., 40., 50., 60., 70] , [0., 10., 20., 30., 40., 50., 60., 70] ]
+    ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.5, 0.5, 0.5, 0.75, 1.0, 1.0, 1.25, 1.25], [.03, .06, .06, .09, .12, .15, 0.18, 0.21]]
     ret.lateralTuning.pid.kf = 0.00004   # full torque for 20 deg at 80mph means 0.00007818594
-    ret.steerActuatorDelay = 0.1  # Default delay, not measured yet
+    ret.steerActuatorDelay = 0.2  # Default delay, not measured yet
 
     if candidate == CAR.VOLT:
       # supports stop and go, but initial engage must be above 18mph (which include conservatism)
@@ -135,19 +135,11 @@ class CarInterface(CarInterfaceBase):
       tire_stiffness_factor = 1.0
 
     elif candidate == CAR.TRAX:
-      ret.minEnableSpeed = 18 * CV.MPH_TO_MS
       ret.mass = 1365. + STD_CARGO_KG
       ret.wheelbase = 2.7
       ret.steerRatio = 16.8
       ret.centerToFront = ret.wheelbase * 0.4
-      ret.steerActuatorDelay = 0.2
-      ret.longitudinalTuning.deadzoneBP = [0., 8.05]
-      ret.longitudinalTuning.deadzoneV = [.0, .14]
-      ret.longitudinalTuning.kpBP = [0., 10., 20., 30., 40., 50., 60., 70]  # kpV의 구간
-      ret.longitudinalTuning.kiBP = [0., 10., 20., 30., 40., 50., 60., 70]  # kiV의 구간
-      ret.longitudinalTuning.kpV = [0.25, 0.5, 0.75, 0.75, 1.0, 1.0, 1.25, 1.25]
-      ret.longitudinalTuning.kiV = [.03, .06, .09, .12, .15, .18, 0.21, 0.24]
-      ret.stoppingDecelRate = 0.5  # reach brake quickly after enabling
+      tire_stiffness_factor = 1.0
 
 
     # TODO: get actual value, for now starting with reasonable value for
