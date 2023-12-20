@@ -58,8 +58,8 @@ class CarInterface(CarInterfaceBase):
 
     # Start with a baseline lateral tuning for all GM vehicles. Override tuning as needed in each model section below.
     ret.minSteerSpeed = 7 * CV.MPH_TO_MS
-    ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0., 10., 20., 30., 40., 50., 60., 70] , [0., 10., 20., 30., 40., 50., 60., 70] ]
-    ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.5, 0.5, 0.5, 0.75, 1.0, 1.0, 1.25, 1.25], [.03, .06, .06, .09, .12, .15, 0.18, 0.21]]
+    ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0., 20., 40., 60.],[0., 20., 40., 60.]]
+    ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.75, 0.75, 0.75, 0.75],[.03, .01, .01, .01]]
     ret.lateralTuning.pid.kf = 0.00004   # full torque for 20 deg at 80mph means 0.00007818594
     ret.steerActuatorDelay = 0.2  # Default delay, not measured yet
 
@@ -137,7 +137,7 @@ class CarInterface(CarInterfaceBase):
     elif candidate == CAR.TRAX:
       ret.mass = 1365. + STD_CARGO_KG
       ret.wheelbase = 2.7
-      ret.steerRatio = 16.8
+      ret.steerRatio = 15.8
       ret.centerToFront = ret.wheelbase * 0.4
       tire_stiffness_factor = 1.0
 
